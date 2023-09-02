@@ -261,7 +261,7 @@ StubLauncher::Launch()
   // If running stub process without any arguments returns any status code,
   // other than 1, it can indicate a permission issue as a result of
   // downloading the stub process from a cloud object storage service.
-  if (WEXITSTATUS(stub_status_code) != 1) {
+  if (WEXITSTATUS(stub_status_code) == 126) {
     // Give the execute permission for the triton_python_backend_stub to the
     // owner.
     int error = chmod(python_backend_stub.c_str(), S_IXUSR);
